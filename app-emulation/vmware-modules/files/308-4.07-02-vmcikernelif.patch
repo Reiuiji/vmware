@@ -1,0 +1,24 @@
+diff --git a/vmci-only/linux/vmciKernelIf.c b/vmci-only/linux/vmciKernelIf.c
+--- a/vmci-only/linux/vmciKernelIf.c
++++ b/vmci-only/linux/vmciKernelIf.c
+@@ -2071,7 +2071,7 @@
+       goto out;
+    }
+ 
+-   retval = get_user_pages(current,
++   retval = get_user_pages_remote(current,
+                            current->mm,
+                            (VA)consumeUVA,
+                            consumeQ->kernelIf->numPages,
+diff --git a/vmci-only/linux/vmciKernelIf.c b/vmci-only/linux/vmciKernelIf.c
+--- a/vmci-only/linux/vmciKernelIf.c
++++ b/vmci-only/linux/vmciKernelIf.c
+@@ -1835,7 +1835,7 @@
+       if (dirty) {
+          set_page_dirty(pages[i]);
+       }
+-      page_cache_release(pages[i]);
++      put_page(pages[i]);
+       pages[i] = NULL;
+    }
+ }
