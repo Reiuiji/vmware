@@ -71,7 +71,7 @@ pkg_setup() {
 src_unpack() {
 	cd "${S}"
 	for mod in ${VMWARE_MODULE_LIST_ALL}; do
-		tar -xf /usr/lib/vmware/modules/source/${mod}.tar
+		tar -xf /opt/vmware/lib/vmware/modules/source/${mod}.tar
 	done
 }
 
@@ -106,6 +106,7 @@ src_prepare() {
 	kernel_is ge 4 7 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.07-01-readlink_copy.patch"
 	kernel_is ge 4 7 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.07-02-vmcikernelif.patch"
 	kernel_is ge 4 8 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.08-00-nr_anon_mapped.patch"
+	kernel_is ge 4 9 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.09-00-user-pages.patch"
 
 	# Allow user patches so they can support RC kernels and whatever else
 	epatch_user
